@@ -7,6 +7,7 @@ namespace Common
         Move,
         MoveResponse,
         GetPlayer,
+        Pointer,
         None,
     }
 

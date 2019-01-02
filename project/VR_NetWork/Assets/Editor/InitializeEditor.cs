@@ -5,9 +5,9 @@ using UnityEditor;
 using UnityEngine.UI;
 using VRTK;
 
-public class InitializeEditor
+public class InitializeEditor : Editor
 {
-    [MenuItem("GameObject/VR/Initialized")]
+    [MenuItem("VR/Initialized")]
     public static void Init()
     {
         

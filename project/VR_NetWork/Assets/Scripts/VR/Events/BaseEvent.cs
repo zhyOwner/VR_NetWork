@@ -1,0 +1,195 @@
+using System;
+using UnityEngine;
+using VRTK;
+
+/// <summary>
+/// 射线监听事件的基类
+/// </summary>
+public class BaseEvent : MonoBehaviour {
+    
+    protected virtual void Start() {
+        //TODO _eventRequest 怎么获取到 _name 怎么命名
+
+       
+    }
+
+
+    protected virtual void OnEnable(){
+         _eventRequest.AddEvent(_name , this);
+    }
+
+    protected virtual void OnDisable(){
+         _eventRequest.RemoveEvent(_name);
+    }
+
+    /// <summary>
+    /// 移除监听事件
+    /// </summary>
+    /// <param name="_controllerEvents"></param>
+    public void RemoveListener(VRTK_ControllerEvents _controllerEvents){
+        _controllerEvents.TriggerClicked -= OnTriggerClick;
+        _controllerEvents.TouchpadPressed -= OnTouchpadPressed;
+        _controllerEvents.TouchpadAxisChanged -= OnTouchpadAxisChanged;
+        _controllerEvents.GripClicked -= OnGripClicked;
+        OnPointerExit();
+    }
+
+    /// <summary>
+    /// 添加监听事件
+    /// </summary>
+    /// <param name="_controllerEvents"></param>
+    public void AddListener(VRTK_ControllerEvents _controllerEvents){
+        _controllerEvents.TriggerClicked += OnTriggerClick;
+        _controllerEvents.TouchpadPressed += OnTouchpadPressed;
+        _controllerEvents.TouchpadAxisChanged += OnTouchpadAxisChanged;
+        _controllerEvents.GripClicked += OnGripClicked;
+        OnPointerEnter();
+    }
+
+
+    /// <summary>
+    /// 射线打中对象握持键点击事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    public virtual void OnGripClicked(object sender, ControllerInteractionEventArgs e)
+    {
+        SendRequest((int)EventOperator.GripClicked + "|" + "OnGripClicked");
+    }
+
+    /// <summary>
+    /// 射线打中对象触摸板轴向改变事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    public virtual void OnTouchpadAxisChanged(object sender, ControllerInteractionEventArgs e)
+    {
+        SendRequest((int)EventOperator.TouchpadAxisChanged + "|" + e.touchpadAxis.x + "-" + e.touchpadAxis.y);
+    }
+
+    /// <summary>
+    /// 射线打中对象触摸键按压事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    public virtual void OnTouchpadPressed(object sender, ControllerInteractionEventArgs e)
+    {
+        SendRequest((int)EventOperator.TouchpadPressed + "|" + "OnTouchpadPressed");
+    }
+
+    /// <summary>
+    /// 射线打中对象扣扳机事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    public virtual void OnTriggerClick(object sender, ControllerInteractionEventArgs e)
+    {
+        SendRequest((int)EventOperator.TriggerClick + "|" + "OnTriggerClick");
+    }
+
+    /// <summary>
+    /// 射线打中事件
+    /// </summary>
+    public virtual void OnPointerEnter(){
+        SendRequest((int)EventOperator.PointerEnter + "|" + "OnPointerEnter");
+    }
+
+    /// <summary>
+    /// 射线退出事件
+    /// </summary>
+    public virtual void OnPointerExit()
+    {
+        SendRequest((int)EventOperator.PointerExit + "|" + "OnPointerExit");
+    }
+
+
+    /// <summary>
+    /// 来自服务的的响应
+    /// </summary>
+    /// <param name="msg"></param>
+    public virtual void OnResponse(string msg){
+        string[] op_msg = msg.Split('|');
+        EventOperator op = (EventOperator)int.Parse(op_msg[0]);
+        switch (op)
+        {
+            case EventOperator.TriggerClick:
+                TriggerClick(op_msg[1]);
+                break;
+
+            case EventOperator.TouchpadPressed:
+                TouchpadPressed(op_msg[1]);
+                break;
+            case EventOperator.TouchpadAxisChanged:
+                string[] x_y = op_msg[1].Split('-');
+                float x = float.Parse(x_y[0]) ;
+                float y = float.Parse(x_y[1]) ;
+                Vector2 axis = new Vector2(x , y);
+                TouchpadAxisChanged(axis);
+                break;
+
+            case EventOperator.GripClicked:
+                GripClicked(op_msg[1]);
+                break;
+            case EventOperator.PointerEnter:
+                PointerEnter(op_msg[1]);
+                break;
+            case EventOperator.PointerExit:
+                PointerExit(op_msg[1]);
+                break;
+            default:
+                break;
+        }
+    }
+
+
+    private void SendRequest(string msg){
+        _eventRequest.SendRequest(_name + "|" + msg);
+    }
+
+    /// <summary>
+    /// 来自服务器的 TriggerClick 响应
+    /// </summary>
+    public virtual void TriggerClick(string msg){
+
+    }
+
+    /// <summary>
+    /// 来自服务器的 TouchpadPressed 响应
+    /// </summary>
+    public virtual void TouchpadPressed(string msg){
+
+    }
+
+    /// <summary>
+    /// 来自服务器的 TouchpadAxisChanged 响应
+    /// </summary>
+    public virtual void TouchpadAxisChanged(Vector2 axis){
+
+    }
+
+    /// <summary>
+    /// 来自服务器的 GripClicked 响应
+    /// </summary>
+    public virtual void GripClicked(string msg){
+
+    }
+
+     /// <summary>
+    /// 来自服务器的 GripClicked 响应
+    /// </summary>
+    public virtual void PointerEnter(string msg){
+
+    }
+
+     /// <summary>
+    /// 来自服务器的 GripClicked 响应
+    /// </summary>
+    public virtual void PointerExit(string msg){
+
+    }
+
+
+   private EventRequest _eventRequest;
+   private string _name;
+
+}
