@@ -6,6 +6,7 @@ namespace Common
         Task,
         Move,
         MoveResponse,
+        ObjectMove,
         GetPlayer,
         Pointer,
         None,

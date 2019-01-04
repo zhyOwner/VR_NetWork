@@ -8,9 +8,8 @@ using VRTK;
 public class BaseEvent : MonoBehaviour {
     
     protected virtual void Start() {
-        //TODO _eventRequest 怎么获取到 _name 怎么命名
-
-       
+        _eventRequest = Main.Instance.GetComponent<EventRequest>();
+        _name = transform.name;
     }
 
 
@@ -106,7 +105,7 @@ public class BaseEvent : MonoBehaviour {
     /// <summary>
     /// 来自服务的的响应
     /// </summary>
-    /// <param name="msg"></param>
+    /// <param name="msg">EventOperator|事件</param>
     public virtual void OnResponse(string msg){
         string[] op_msg = msg.Split('|');
         EventOperator op = (EventOperator)int.Parse(op_msg[0]);
@@ -187,7 +186,6 @@ public class BaseEvent : MonoBehaviour {
     public virtual void PointerExit(string msg){
 
     }
-
 
    private EventRequest _eventRequest;
    private string _name;

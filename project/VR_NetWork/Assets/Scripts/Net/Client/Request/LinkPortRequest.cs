@@ -21,7 +21,7 @@ public class LinkPortRequest : BaseRequest
         monitorImage.color = Color.gray;
         operatorImage.color = Color.gray;
         roamImage.color = Color.gray;
-        roamCountText.text = _count.ToString();
+        roamCountText.text = _roamCount.ToString();
 
         DontDestroyOnLoad(gameObject);
         SendRequest("getplayer");
@@ -70,13 +70,13 @@ public class LinkPortRequest : BaseRequest
                 operatorImage.color = Color.gray;
                 break;
             case "Roaming":
-                _count--;
-                if (_count <= 0)
+                _roamCount--;
+                if (_roamCount <= 0)
                 {
                     roamImage.color = Color.gray;
-                    _count = 0;
+                    _roamCount = 0;
                 }
-                roamCountText.text = _count.ToString();
+                roamCountText.text = _roamCount.ToString();
                 break;
         }
 
@@ -100,12 +100,11 @@ public class LinkPortRequest : BaseRequest
                 break;
             case "Roaming":
                 roamImage.color = Color.green;
-                _count++;
-                roamCountText.text = _count.ToString();
+                _roamCount++;
+                roamCountText.text = _roamCount.ToString();
                 break;
         }
 
-        //TODO 创建Player
         CreatePlayer(userName);
     }
 
@@ -147,7 +146,7 @@ public class LinkPortRequest : BaseRequest
         Main._players.Remove(id);
     }
 
-    private int _count;//登录的漫游端的个数
+    private int _roamCount;//登录的漫游端的个数
     private bool _isGet = true; //是否是主动获取 已登录的端口的信息
    
 }

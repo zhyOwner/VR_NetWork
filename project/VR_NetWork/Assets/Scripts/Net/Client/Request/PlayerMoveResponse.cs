@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerMoveResponse : BaseRequest
 {
-
     public override void Start()
     {
         requestCode = RequestCode.None;
@@ -28,10 +27,6 @@ public class PlayerMoveResponse : BaseRequest
         float x = float.Parse(str[0]);
         float y = float.Parse(str[1]);
         float z = float.Parse(str[2]);
-        _vector3.x = x;
-        _vector3.y = y;
-        _vector3.z = z;
-        return _vector3;
+       return new Vector3(x, y , z);
     }
-    private Vector3 _vector3;
 }

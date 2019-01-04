@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
+    public static Main Instance;
     public static bool isTest = false;
 
     /* 管理所有的需要同步的角色 */
@@ -11,6 +12,7 @@ public class Main : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
