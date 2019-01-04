@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using Common;
 using UnityEngine;
 
+/// <summary>
+/// 射线事件请求基类
+/// </summary>
 public class EventRequest : BaseRequest {
 
     public override void Start(){

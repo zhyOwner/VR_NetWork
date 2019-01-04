@@ -39,7 +39,7 @@ public class MainRequest : BaseRequest
     }
 
     /// <summary>
-    /// 任务选择事件
+    /// 任务选择事件 //有 bug 点击按钮事件 之后应该禁用所有按钮 （避免重复请求）
     /// </summary>
     /// <param name="task"></param>
     private void AddButtonEvent(string task)

@@ -24,7 +24,7 @@ namespace Servers
         {
             _players = new Dictionary<string, Player>();
         }
-
+        
         public bool AddPlayer(string id , Player player){
             if(_players.ContainsKey(id)) return false;
             foreach (Player value in _players.Values)
