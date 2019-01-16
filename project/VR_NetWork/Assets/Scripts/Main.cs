@@ -14,10 +14,15 @@ public class Main : MonoBehaviour
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+
+        /* 一系列 Manager 的初始化 */
     }
 
+    //全局唯一 Update 刷新方法
     void Update()
     {
+        /* 一系列 Manager 的 Update  */
         RequestManager.Instance.Tick();
     }
 

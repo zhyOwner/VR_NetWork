@@ -47,6 +47,18 @@ namespace Servers{
             return null;
         }
         
+          /// <summary>
+        /// 响应客户端简单自定义的请求
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="client"></param>
+        /// <param name="server"></param>
+        /// <returns></returns>
+        public string  Simple(string data, Client client, Server server){
+            server.BroadcastMessage(client , ActionCode.ObjectMove , data);
+            return null;
+        }
+        
     }
 
 }
