@@ -18,7 +18,6 @@ public class InitializePort : MonoBehaviour
     public GameObject VRTK_RightHand;
     public Text tittle;
     public Text taskContent;
-    public GameObject VRTK_GuidePanel;
     # endregion
     #region PC
     [Header("PC")]
@@ -33,7 +32,6 @@ public class InitializePort : MonoBehaviour
     private void Start()
     {
         if(ClientManager.Port != Port.Monitor )
-        //if(true)
         {
             HTCInit();
         }
