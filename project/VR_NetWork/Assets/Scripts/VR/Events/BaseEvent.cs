@@ -7,7 +7,7 @@ using VRTK;
 /// </summary>
 public class BaseEvent : MonoBehaviour {
     
-    protected virtual void Start() {
+    protected virtual void Awake() {
         _eventRequest = Main.Instance.GetComponent<EventRequest>();
         _name = transform.name;
     }
@@ -173,15 +173,15 @@ public class BaseEvent : MonoBehaviour {
 
     }
 
-     /// <summary>
-    /// 来自服务器的 GripClicked 响应
+    /// <summary>
+    /// 来自服务器的 PointerEnter 响应
     /// </summary>
     public virtual void PointerEnter(string msg){
 
     }
 
-     /// <summary>
-    /// 来自服务器的 GripClicked 响应
+    /// <summary>
+    /// 来自服务器的 PointerExit 响应
     /// </summary>
     public virtual void PointerExit(string msg){
 

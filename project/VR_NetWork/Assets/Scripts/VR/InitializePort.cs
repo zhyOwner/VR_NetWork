@@ -32,6 +32,7 @@ public class InitializePort : MonoBehaviour
     private void Start()
     {
         if(ClientManager.Port != Port.Monitor )
+        //if(true)
         {
             HTCInit();
         }

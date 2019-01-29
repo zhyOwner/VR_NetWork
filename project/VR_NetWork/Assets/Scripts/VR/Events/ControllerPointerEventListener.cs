@@ -39,7 +39,7 @@ public class ControllerPointerEventListener : MonoBehaviour {
     {
         BaseEvent _event = e.target.GetComponent<BaseEvent>();
         if(_event != null){
-            _event.AddListener(_controllerEvents);
+            _event.RemoveListener(_controllerEvents);
         }
     }
 
@@ -52,7 +52,7 @@ public class ControllerPointerEventListener : MonoBehaviour {
     {
         BaseEvent _event = e.target.GetComponent<BaseEvent>();
         if(_event != null){
-            _event.RemoveListener(_controllerEvents);
+            _event.AddListener(_controllerEvents);
         }
     }
 
