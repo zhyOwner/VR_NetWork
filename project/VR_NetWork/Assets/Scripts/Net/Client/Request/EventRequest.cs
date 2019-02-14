@@ -16,14 +16,17 @@ public class EventRequest : BaseRequest {
     public void AddEvent(string _name, BaseEvent _event){
         if(_eventDic.ContainsKey(_name)) return;
         _eventDic.Add(_name , _event);
+        Debug.Log("添加交互对象： " + _name);
     }
     
     public void RemoveEvent(string _name){
         if(!_eventDic.ContainsKey(_name)) return;
         _eventDic.Remove(_name);
+        Debug.Log("移除交换对象： " + _name);
     }
 
     public override void OnResponse(string data){
+        Debug.Log("收到交换相应： " + data);
         string[] _nameEvent = data.Split('|');
         if(!_eventDic.ContainsKey(_nameEvent[0])) return;
         _eventDic[_nameEvent[0]].OnResponse(_nameEvent[1]);

@@ -37,6 +37,7 @@ public class ControllerPointerEventListener : MonoBehaviour {
     /// <param name="e"></param>
     private void DoPointerOut(object sender, DestinationMarkerEventArgs e)
     {
+        Debug.Log("射线退出：" + e.target.name);
         BaseEvent _event = e.target.GetComponent<BaseEvent>();
         if(_event != null){
             _event.RemoveListener(_controllerEvents);
@@ -50,6 +51,7 @@ public class ControllerPointerEventListener : MonoBehaviour {
     /// <param name="e"></param>
     private void DoPointerIn(object sender, DestinationMarkerEventArgs e)
     {
+        Debug.Log("射线打中：" + e.target.name);
         BaseEvent _event = e.target.GetComponent<BaseEvent>();
         if(_event != null){
             _event.AddListener(_controllerEvents);

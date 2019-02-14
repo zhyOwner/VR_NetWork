@@ -107,6 +107,7 @@ public class BaseEvent : MonoBehaviour {
     /// </summary>
     /// <param name="msg">EventOperator|事件</param>
     public virtual void OnResponse(string msg){
+        Debug.Log("响应内容: " + msg);
         string[] op_msg = msg.Split('|');
         EventOperator op = (EventOperator)int.Parse(op_msg[0]);
         switch (op)

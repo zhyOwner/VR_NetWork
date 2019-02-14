@@ -15,7 +15,6 @@ public class ObjectMoveRequest : MonoBehaviour {
             InvokeRepeating("SyncObject" , 2 , 1/rate);
     }
     private void OnEnable() {
-        Debug.Log(_requestManager);
         _requestManager.AddMoveRequest(_name, this);
 
         /* 如果不是操作端则将 刚体移除 */

@@ -767,8 +767,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726490324}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.32840756, y: -0.0066209966, z: 0.0023092267, w: 0.9445101}
+  m_LocalPosition: {x: 0.060009003, y: 5.731307, z: -8.050272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1058,6 +1058,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9126942116824260132, guid: bfa3d0d16f87300418848630581a4ec1,
+        type: 3}
+      propertyPath: m_Name
+      value: '[VRTK_Scripts]'
+      objectReference: {fileID: 0}
+    - target: {fileID: 9126942116824260132, guid: bfa3d0d16f87300418848630581a4ec1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5428558375545970594, guid: bfa3d0d16f87300418848630581a4ec1,
         type: 3}
       propertyPath: customCursor
@@ -1083,16 +1093,6 @@ PrefabInstance:
         type: 3}
       propertyPath: validCollisionColor.b
       value: 0.934247
-      objectReference: {fileID: 0}
-    - target: {fileID: 9126942116824260132, guid: bfa3d0d16f87300418848630581a4ec1,
-        type: 3}
-      propertyPath: m_Name
-      value: '[VRTK_Scripts]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 9126942116824260132, guid: bfa3d0d16f87300418848630581a4ec1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9126942116824260133, guid: bfa3d0d16f87300418848630581a4ec1,
         type: 3}
