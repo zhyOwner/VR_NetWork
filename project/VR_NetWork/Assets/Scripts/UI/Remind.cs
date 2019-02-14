@@ -22,6 +22,7 @@ public class Remind : MonoBehaviour
     private void OnSureButtonClick()
     {
         _action?.Invoke();
+        _action = null;
         panel.SetActive(false);
     }
 

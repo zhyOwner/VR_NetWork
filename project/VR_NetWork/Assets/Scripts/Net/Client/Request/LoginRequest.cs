@@ -113,6 +113,7 @@ public class LoginRequest : BaseRequest
     /// <param name="data"></param>
     public override void OnResponse(string data)
     {
+        Debug.Log(data);
         string[] response = data.Split(',');
         ReturnCode code = (ReturnCode) int.Parse(response[0]);
         switch (code)

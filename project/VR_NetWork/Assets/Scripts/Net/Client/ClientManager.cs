@@ -6,7 +6,6 @@ using UnityEngine;
 public class ClientManager : MonoBehaviour {
 
     public static ClientManager Instance;
-    private string IP = "127.0.0.1";
     private int PORT = 6688;
 
     private Socket _clientSocket;
@@ -38,12 +37,13 @@ public class ClientManager : MonoBehaviour {
         _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         try
         {
-            _clientSocket.Connect(IP , PORT);
+            _clientSocket.Connect(ip, PORT);
             OnStart();
             action("连接成功,正在登录请稍等...");
         }
         catch (System.Exception e)
         {
+            Debug.Log(e.Message);
             Remind.instance.Report("连接失败，请检查ip地址或用户名是否输入有误...");
         }
     }
