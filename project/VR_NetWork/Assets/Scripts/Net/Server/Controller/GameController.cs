@@ -29,7 +29,7 @@ namespace Servers{
         /// <param name="server"></param>
         /// <returns></returns>
         public string Pointer(string data, Client client, Server server){
-            server.BroadcastMessage(client , ActionCode.MoveResponse , data);
+            server.BroadcastMessage(client , ActionCode.Pointer , data);
             return null;
         }
 

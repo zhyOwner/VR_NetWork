@@ -29,7 +29,7 @@ public class EventRequest : BaseRequest {
         Debug.Log("收到交换相应： " + data);
         string[] _nameEvent = data.Split('|');
         if(!_eventDic.ContainsKey(_nameEvent[0])) return;
-        _eventDic[_nameEvent[0]].OnResponse(_nameEvent[1]);
+        _eventDic[_nameEvent[0]].OnResponse(data);
     }
 
     /// <summary>

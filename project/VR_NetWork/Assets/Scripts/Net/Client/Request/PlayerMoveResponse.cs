@@ -16,6 +16,7 @@ public class PlayerMoveResponse : BaseRequest
     {
         string[] playerMsgs = msg.Split('|');
         GameObject player = Main.GetPlayer(playerMsgs[0]);
+        if (player = null) return;
         player.transform.position = Parse(playerMsgs[1]);
         player.transform.eulerAngles = Parse(playerMsgs[2]);
         //TODO 动画的同步 

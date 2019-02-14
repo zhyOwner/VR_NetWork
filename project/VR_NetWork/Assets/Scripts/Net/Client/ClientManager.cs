@@ -43,7 +43,6 @@ public class ClientManager : MonoBehaviour {
         }
         catch (System.Exception e)
         {
-            Debug.Log(e.Message);
             Remind.instance.Report("连接失败，请检查ip地址或用户名是否输入有误...");
         }
     }

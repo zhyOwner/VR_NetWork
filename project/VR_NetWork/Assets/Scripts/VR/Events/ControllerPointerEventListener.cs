@@ -4,7 +4,6 @@ using VRTK;
 enum EventOperator
 {
     GripClicked = 0,
-    TouchpadAxisChanged,
     TouchpadPressed,
     TriggerClick,
     PointerEnter,

@@ -28,7 +28,6 @@ public class BaseEvent : MonoBehaviour {
     public void RemoveListener(VRTK_ControllerEvents _controllerEvents){
         _controllerEvents.TriggerClicked -= OnTriggerClick;
         _controllerEvents.TouchpadPressed -= OnTouchpadPressed;
-        _controllerEvents.TouchpadAxisChanged -= OnTouchpadAxisChanged;
         _controllerEvents.GripClicked -= OnGripClicked;
         OnPointerExit();
     }
@@ -40,7 +39,6 @@ public class BaseEvent : MonoBehaviour {
     public void AddListener(VRTK_ControllerEvents _controllerEvents){
         _controllerEvents.TriggerClicked += OnTriggerClick;
         _controllerEvents.TouchpadPressed += OnTouchpadPressed;
-        _controllerEvents.TouchpadAxisChanged += OnTouchpadAxisChanged;
         _controllerEvents.GripClicked += OnGripClicked;
         OnPointerEnter();
     }
@@ -56,15 +54,6 @@ public class BaseEvent : MonoBehaviour {
         SendRequest((int)EventOperator.GripClicked + "|" + "OnGripClicked");
     }
 
-    /// <summary>
-    /// 射线打中对象触摸板轴向改变事件
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    public virtual void OnTouchpadAxisChanged(object sender, ControllerInteractionEventArgs e)
-    {
-        SendRequest((int)EventOperator.TouchpadAxisChanged + "|" + e.touchpadAxis.x + "-" + e.touchpadAxis.y);
-    }
 
     /// <summary>
     /// 射线打中对象触摸键按压事件
@@ -108,32 +97,23 @@ public class BaseEvent : MonoBehaviour {
     /// <param name="msg">EventOperator|事件</param>
     public virtual void OnResponse(string msg){
         string[] op_msg = msg.Split('|');
-        EventOperator op = (EventOperator)int.Parse(op_msg[0]);
+        EventOperator op = (EventOperator)int.Parse(op_msg[1]);
         switch (op)
         {
             case EventOperator.TriggerClick:
-                TriggerClick(op_msg[1]);
+                TriggerClick(op_msg[2]);
                 break;
-
             case EventOperator.TouchpadPressed:
-                TouchpadPressed(op_msg[1]);
+                TouchpadPressed(op_msg[2]);
                 break;
-            case EventOperator.TouchpadAxisChanged:
-                string[] x_y = op_msg[1].Split('-');
-                float x = float.Parse(x_y[0]) ;
-                float y = float.Parse(x_y[1]) ;
-                Vector2 axis = new Vector2(x , y);
-                TouchpadAxisChanged(axis);
-                break;
-
             case EventOperator.GripClicked:
-                GripClicked(op_msg[1]);
+                GripClicked(op_msg[2]);
                 break;
             case EventOperator.PointerEnter:
-                PointerEnter(op_msg[1]);
+                PointerEnter(op_msg[2]);
                 break;
             case EventOperator.PointerExit:
-                PointerExit(op_msg[1]);
+                PointerExit(op_msg[2]);
                 break;
             default:
                 break;
@@ -156,13 +136,6 @@ public class BaseEvent : MonoBehaviour {
     /// 来自服务器的 TouchpadPressed 响应
     /// </summary>
     public virtual void TouchpadPressed(string msg){
-
-    }
-
-    /// <summary>
-    /// 来自服务器的 TouchpadAxisChanged 响应
-    /// </summary>
-    public virtual void TouchpadAxisChanged(Vector2 axis){
 
     }
 
